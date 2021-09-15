@@ -5,13 +5,13 @@
 #include <string.h>
 #include <stdio.h>
 
-//Êı×é³¤¶ÈµİÔöÁ¿
+//æ•°ç»„é•¿åº¦é€’å¢é‡
 #define init_size 10
 
-//Ë³Ğò±í·ºĞÍ
+//é¡ºåºè¡¨æ³›å‹
 #define SqList(T) T##_SqList
 
-//Ìí¼ÓĞÂµÄÀàĞÍµ½·ºĞÍ¿âÖĞ£¬Ìí¼Óºó²ÅÄÜÊ¹ÓÃ
+//æ·»åŠ æ–°çš„ç±»å‹åˆ°æ³›å‹åº“ä¸­ï¼Œæ·»åŠ åæ‰èƒ½ä½¿ç”¨
 /*********************************************************/
 #define SQLIST_TYPE_SET(T)                                      \
 typedef struct SqList(T) SqList(T);                             \
@@ -30,7 +30,7 @@ struct SqList(T){                                               \
 }
 
 
-//Ë³Ğò±í·½·¨Ìå£¬¶¨Òåº¯ÊıµÄ¹¦ÄÜ
+//é¡ºåºè¡¨æ–¹æ³•ä½“ï¼Œå®šä¹‰å‡½æ•°çš„åŠŸèƒ½
 /******************************************************************/
 #define SQLIST_FUNCTION_BODY(T)                                           \
 T* begin(){                                                               \
@@ -73,15 +73,15 @@ int LocateElem(T e){                                                      \
 }                                                                         \
 int ListInsert(int i, T e){                                               \
     if(i <= 0 && i > length + 1) return 0;                                \
-    void* _new_ptr_;                                                      \
     if (capacity <= length) {                                             \
-         _new_ptr_ = (T*)realloc(sqlist, sizeof(T)*(capacity+init_size)); \
+        void* _new_ptr_;                                                  \
+		 _new_ptr_ = (T*)realloc(sqlist, sizeof(T)*(capacity+init_size)); \
         if(_new_ptr_ == NULL) {                                           \
             return 0;                                                     \
         }                                                                 \
         capacity += init_size;                                            \
-    }                                                                     \
-    sqlist = (T*)_new_ptr_;                                               \
+    	sqlist = (T*)_new_ptr_;                                           \
+	}                                                                     \
     memmove(sqlist + i, sqlist + i - 1, length - (i - 1));                \
     sqlist[i-1]=e;                                                        \
     ++length;                                                             \
@@ -93,7 +93,7 @@ int ListDelet(int i){                                                     \
 }
 
 
-//Éú³ÉÀàËùº¬µÄ³ÉÔ±·½·¨
+//ç”Ÿæˆç±»æ‰€å«çš„æˆå‘˜æ–¹æ³•
 /*****************************************************************/
 #define SQLIST_FUNCTION_assignmen                                         \
     this.begin = begin;                                                   \
@@ -111,7 +111,7 @@ int ListDelet(int i){                                                     \
 /******************************************************************/
 
 
-//¹¹Ôìº¯Êı
+//æ„é€ å‡½æ•°
 #define InitList(T)                                                       \
 ({                                                                        \
     T *sqlist = NULL;                                                     \
